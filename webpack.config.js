@@ -113,6 +113,9 @@ module.exports = env => {
             includePaths: [SRC_DIR],
           },
         },
+        // {
+        //   loader: 'postcss-loader'
+        // }
       ],
     });
   } else {
@@ -130,6 +133,7 @@ module.exports = env => {
         loader: 'css-loader',
         options: {
           module: true,
+          modules: true,
           localIdentName: '[path][name]-[local]',
         },
       },
@@ -141,9 +145,9 @@ module.exports = env => {
           includePaths: [SRC_DIR],
         },
       },
-      {
-        loader: 'postcss-loader'
-      }
+      // {
+      //   loader: 'postcss-loader'
+      // }
     ];
   }
 
@@ -157,6 +161,7 @@ module.exports = env => {
       new WorkboxWebpackPlugin({
         globDirectory: BUILD_DIR,
         globPatterns: ['**/*.{html,js,css}'],
+        globIgnores: ['**/service-worker.js'],
         swSrc: path.join(ROOT_DIR, 'service-worker.js'),
         swDest: path.join(BUILD_DIR, 'sw.js'),
       })
@@ -190,9 +195,19 @@ module.exports = env => {
           },
         },
         {
+          test: /\.css$/,
+          use: ExtractTextPlugin.extract({
+              fallback: "style-loader",
+              use: "css-loader"
+          })
+        },
+        {
           test: /\.scss$/,
-          exclude: /node_modules/,
           use: cssLoader,
+        },
+        {
+          test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+          use: 'url-loader?limit=100000'
         },
         {
           test: /\.(js|jsx)$/,
@@ -219,6 +234,7 @@ module.exports = env => {
 
     devServer: {
       contentBase: BUILD_DIR,
+      publicPath: '/',
       historyApiFallback: true,
       port: PORT,
       host: HOST,

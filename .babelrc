@@ -4,5 +4,5 @@
     "transform-decorators-legacy",
     "transform-class-properties"
   ],
-  "presets": ["react"]
+  "presets": ["es2015", "react", "airbnb"]
 }
