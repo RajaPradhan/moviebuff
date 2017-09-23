@@ -1,10 +1,10 @@
-import axios from 'axios';
+import axios from "axios";
 
-import * as types from './types';
+import * as types from "./types";
 
-const HOST = 'http://localhost:5000';
+const HOST = "http://localhost:5000";
 
-export const setMoviesCategory = (moviesCategory) => async dispatch => {
+export const setMoviesCategory = moviesCategory => async dispatch => {
   dispatch({ type: types.SET_MOVIES_CATEGORY, payload: moviesCategory });
 };
 
@@ -30,4 +30,12 @@ export const fetchUpcomingMovies = () => async dispatch => {
   const res = await axios.get(`${HOST}/api/v1/movies/upcoming`);
 
   dispatch({ type: types.FETCH_UPCOMING_MOVIES, payload: res.data });
+};
+
+export const fetchMoviesByGenres = selectedMoviesGenres => async dispatch => {
+  const res = await axios.get(
+    `${HOST}/api/v1/movies/refine?with_genres=${selectedMoviesGenres}`
+  );
+
+  dispatch({ type: types.FETCH_MOVIES_BY_GENRES, payload: res.data });
 };

@@ -3,15 +3,17 @@ import {
   FETCH_NOW_PLAYING_MOVIES,
   FETCH_MOST_POPULAR_MOVIES,
   FETCH_TOP_RATED_MOVIES,
-  FETCH_UPCOMING_MOVIES
- } from "actions/types";
+  FETCH_UPCOMING_MOVIES,
+  FETCH_MOVIES_BY_GENRES
+} from "actions/types";
 
 const initialState = {
-  moviesCategory: 'nowPlayingMovies',
+  moviesCategory: "nowPlayingMovies",
   nowPlayingMovies: [],
   mostPopularMovies: [],
   topRatedMovies: [],
-  upcomingMovies: []
+  upcomingMovies: [],
+  moviesByGenres: []
 };
 
 export default (state = initialState, action) => {
@@ -39,6 +41,11 @@ export default (state = initialState, action) => {
     case FETCH_UPCOMING_MOVIES:
       return Object.assign({}, state, {
         upcomingMovies: action.payload
+      });
+      break;
+    case FETCH_MOVIES_BY_GENRES:
+      return Object.assign({}, state, {
+        moviesByGenres: action.payload
       });
       break;
     default:

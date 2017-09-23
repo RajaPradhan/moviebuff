@@ -11,10 +11,14 @@ class SideBar extends Component {
     super(props);
 
     this.state = {
-      selectedMovieCategory: "nowPlayingMovies"
+      selectedMovieCategory: "nowPlayingMovies",
+      selectedMoviesGenres: []
     };
 
     this.handleMoviesCategoryChange = this.handleMoviesCategoryChange.bind(
+      this
+    );
+    this.handleMoviesGenreSelection = this.handleMoviesGenreSelection.bind(
       this
     );
   }
@@ -42,6 +46,38 @@ class SideBar extends Component {
         this.props.fetchUpcomingMovies();
         break;
     }
+  }
+
+  addToSelectedMoviesGenres(genre) {
+    let selectedMoviesGenres = this.state.selectedMoviesGenres;
+    selectedMoviesGenres.push(genre);
+    this.setState({
+      selectedMoviesGenres
+    });
+    return selectedMoviesGenres;
+  }
+
+  removeFromSelectedMoviesGenres(genre) {
+    let selectedMoviesGenres = this.state.selectedMoviesGenres;
+    _.remove(selectedMoviesGenres, currentGenre => {
+      return currentGenre === genre;
+    });
+    this.setState({
+      selectedMoviesGenres
+    });
+    return selectedMoviesGenres;
+  }
+
+  handleMoviesGenreSelection(event) {
+    const target = event.target;
+    let selectedMoviesGenres = [];
+    if (target.checked) {
+      selectedMoviesGenres = this.addToSelectedMoviesGenres(target.value);
+    } else {
+      selectedMoviesGenres = this.removeFromSelectedMoviesGenres(target.value);
+    }
+    this.props.setMoviesCategory("moviesByGenres");
+    this.props.fetchMoviesByGenres(selectedMoviesGenres.join(","));
   }
 
   render() {
@@ -110,16 +146,104 @@ class SideBar extends Component {
         <p>Genres</p>
         <ul>
           <li>
-            <input type="checkbox" className="filled-in" id="comedy" />
+            <input
+              type="checkbox"
+              className="filled-in"
+              id="action"
+              value="28"
+              onChange={this.handleMoviesGenreSelection}
+            />
+            <label htmlFor="action">Action</label>
+          </li>
+          <li>
+            <input
+              type="checkbox"
+              className="filled-in"
+              id="adventure"
+              value="12"
+              onChange={this.handleMoviesGenreSelection}
+            />
+            <label htmlFor="adventure">Adventure</label>
+          </li>
+          <li>
+            <input
+              type="checkbox"
+              className="filled-in"
+              id="animation"
+              value="16"
+              onChange={this.handleMoviesGenreSelection}
+            />
+            <label htmlFor="animation">Animation</label>
+          </li>
+          <li>
+            <input
+              type="checkbox"
+              className="filled-in"
+              id="comedy"
+              value="35"
+              onChange={this.handleMoviesGenreSelection}
+            />
             <label htmlFor="comedy">Comedy</label>
           </li>
           <li>
-            <input type="checkbox" className="filled-in" id="drama" />
+            <input
+              type="checkbox"
+              className="filled-in"
+              id="crime"
+              value="80"
+              onChange={this.handleMoviesGenreSelection}
+            />
+            <label htmlFor="crime">Crime</label>
+          </li>
+          <li>
+            <input
+              type="checkbox"
+              className="filled-in"
+              id="documentry"
+              value="99"
+              onChange={this.handleMoviesGenreSelection}
+            />
+            <label htmlFor="documentry">Documentry</label>
+          </li>
+          <li>
+            <input
+              type="checkbox"
+              className="filled-in"
+              id="drama"
+              value="18"
+              onChange={this.handleMoviesGenreSelection}
+            />
             <label htmlFor="drama">Drama</label>
           </li>
           <li>
-            <input type="checkbox" className="filled-in" id="horror" />
-            <label htmlFor="horror">Horror</label>
+            <input
+              type="checkbox"
+              className="filled-in"
+              id="family"
+              value="10751"
+              onChange={this.handleMoviesGenreSelection}
+            />
+            <label htmlFor="family">Family</label>
+          </li>
+          <li>
+            <input
+              type="checkbox"
+              className="filled-in"
+              id="romance"
+              value="10749"
+              onChange={this.handleMoviesGenreSelection}
+            />
+            <label htmlFor="romance">Romance</label>
+          </li>
+          <li>
+            <input
+              type="checkbox"
+              className="filled-in"
+              id="thriller"
+              value="53"
+              onChange={this.handleMoviesGenreSelection}
+            />
+            <label htmlFor="thriller">Thriller</label>
           </li>
         </ul>
       </div>
@@ -136,7 +260,8 @@ const mapDispatchToProps = {
   fetchNowPlayingMovies: actions.fetchNowPlayingMovies,
   fetchMostPopularMovies: actions.fetchMostPopularMovies,
   fetchTopRatedMovies: actions.fetchTopRatedMovies,
-  fetchUpcomingMovies: actions.fetchUpcomingMovies
+  fetchUpcomingMovies: actions.fetchUpcomingMovies,
+  fetchMoviesByGenres: actions.fetchMoviesByGenres
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SideBar);
