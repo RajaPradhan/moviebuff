@@ -1,16 +1,60 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import _ from "lodash";
 
 import Card from "components/Card";
+import Loading from "components/Loading";
+import * as actions from "actions";
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+class MainArea extends Component {
+  componentDidMount() {
+    this.props.fetchNowPlayingMovies();
+  }
 
-const MainArea = () => (
-  <div className="row">
-    <div className="col s12 m8" style={{ border: "1px solid red" }}>
-      <div className="row">{_.map(cards, card => <Card key={card} />)}</div>
-    </div>
-  </div>
-);
+  renderCards(nowPlayingMovies) {
+    return _.map(nowPlayingMovies.results, movie => (
+      <Card
+        key={movie.id}
+        id={movie.id}
+        votes={movie["vote_average"]}
+        title={movie.title}
+        posterPath={movie["poster_path"]}
+        overview={movie.overview}
+        releaseDate={movie["release_date"]}
+      />
+    ));
+  }
 
-export default MainArea;
+  render() {
+    const { nowPlayingMovies } = this.props.movies;
+
+    return (
+      <div className="row">
+        <div className="col s12 m8">
+          <div
+            className="row"
+            style={{ border: "1px solid #d4d1d1", backgroundColor: "#fff" }}
+          >
+            {nowPlayingMovies.length > 0 ||
+            (nowPlayingMovies.results && nowPlayingMovies.results.length) >
+              0 ? (
+              this.renderCards(nowPlayingMovies)
+            ) : (
+              <Loading />
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = ({ movies }) => {
+  return { movies };
+};
+
+const mapDispatchToProps = {
+  fetchNowPlayingMovies: actions.fetchNowPlayingMovies
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainArea);

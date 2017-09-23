@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import classNames from "classnames";
 
 import SearchBox from "components/SearchBox";
@@ -18,9 +19,9 @@ const Header = () => (
       <div className="nav-wrapper">
         <div className="row">
           <div className="col s12 offset-m1 m2">
-            <a href="#" className="brand-logo">
+            <Link to="home" className="brand-logo">
               MovieBuff
-            </a>
+            </Link>
           </div>
           <div className="col s12 m7">
             <SearchBox />

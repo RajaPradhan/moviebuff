@@ -13,6 +13,7 @@
   "author": "RajaPradhan <rajapradhan08@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.16.2",
     "classnames": "^2.2.5",
     "lodash": "^4.17.4",
     "materialize-css": "^0.100.2",
