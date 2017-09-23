@@ -11,8 +11,8 @@ class MainArea extends Component {
     this.props.fetchNowPlayingMovies();
   }
 
-  renderCards(nowPlayingMovies) {
-    return _.map(nowPlayingMovies.results, movie => (
+  renderCards(movies) {
+    return _.map(movies.results, movie => (
       <Card
         key={movie.id}
         id={movie.id}
@@ -26,7 +26,8 @@ class MainArea extends Component {
   }
 
   render() {
-    const { nowPlayingMovies } = this.props.movies;
+    const { moviesCategory } = this.props.movies;
+    const movies = this.props.movies[moviesCategory];
 
     return (
       <div className="row">
@@ -35,10 +36,10 @@ class MainArea extends Component {
             className="row"
             style={{ border: "1px solid #d4d1d1", backgroundColor: "#fff" }}
           >
-            {nowPlayingMovies.length > 0 ||
-            (nowPlayingMovies.results && nowPlayingMovies.results.length) >
+            {movies.length > 0 ||
+            (movies.results && movies.results.length) >
               0 ? (
-              this.renderCards(nowPlayingMovies)
+              this.renderCards(movies)
             ) : (
               <Loading />
             )}

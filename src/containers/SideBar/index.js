@@ -1,78 +1,142 @@
-import React from "react";
-import classNames from 'classnames';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import classNames from "classnames";
 
-import baseStyles from 'containers/App/styles.scss';
+import * as actions from "actions";
 
-const SideBar = () => (
-  <div
-    className={classNames("col offset-m1 m2", baseStyles['hide-on-small-to-med'])}
-    style={{ border: "1px solid #d4d1d1", backgroundColor: "#fff" }}
-  >
-    <h5>Filters</h5>
-    <ul>
-      <li>
-        <input
-          className="with-gap"
-          name="group3"
-          type="radio"
-          id="test1"
-          checked
-        />
-        <label htmlFor="test1">Currently running</label>
-      </li>
-      <li>
-        <input
-          className="with-gap"
-          name="group3"
-          type="radio"
-          id="test2"
-          checked
-        />
-        <label htmlFor="test2">Most popular</label>
-      </li>
-      <li>
-        <input
-          className="with-gap"
-          name="group3"
-          type="radio"
-          id="test3"
-          checked
-        />
-        <label htmlFor="test3">Recent movies</label>
-      </li>
-      <li>
-        <input
-          className="with-gap"
-          name="group3"
-          type="radio"
-          id="test4"
-          checked
-        />
-        <label htmlFor="test4">Epic movies</label>
-      </li>
-    </ul>
+import baseStyles from "containers/App/styles.scss";
 
-    <p>Genres</p>
-    <ul>
-      <li>
-        <input
-          type="checkbox"
-          className="filled-in"
-          id="comedy"
-          checked="checked"
-        />
-        <label htmlFor="comedy">Comedy</label>
-      </li>
-      <li>
-        <input type="checkbox" className="filled-in" id="drama" />
-        <label htmlFor="drama">Drama</label>
-      </li>
-      <li>
-        <input type="checkbox" className="filled-in" id="horror" />
-        <label htmlFor="horror">Horror</label>
-      </li>
-    </ul>
-  </div>
-);
+class SideBar extends Component {
+  constructor(props) {
+    super(props);
 
-export default SideBar;
+    this.state = {
+      selectedMovieCategory: "nowPlayingMovies"
+    };
+
+    this.handleMoviesCategoryChange = this.handleMoviesCategoryChange.bind(
+      this
+    );
+  }
+
+  handleMoviesCategoryChange(event) {
+    const selectedMovieCategory = event.target.value;
+    this.setState({
+      selectedMovieCategory
+    });
+    switch (selectedMovieCategory) {
+      case "nowPlayingMovies":
+        this.props.setMoviesCategory("nowPlayingMovies");
+        this.props.fetchNowPlayingMovies();
+        break;
+      case "mostPopularMovies":
+        this.props.setMoviesCategory("mostPopularMovies");
+        this.props.fetchMostPopularMovies();
+        break;
+      case "topRatedMovies":
+        this.props.setMoviesCategory("topRatedMovies");
+        this.props.fetchTopRatedMovies();
+        break;
+      case "upcomingMovies":
+        this.props.setMoviesCategory("upcomingMovies");
+        this.props.fetchUpcomingMovies();
+        break;
+    }
+  }
+
+  render() {
+    const { selectedMovieCategory } = this.state;
+
+    return (
+      <div
+        className={classNames(
+          "col offset-m1 m2",
+          baseStyles["hide-on-small-to-med"]
+        )}
+        style={{ border: "1px solid #d4d1d1", backgroundColor: "#fff" }}
+      >
+        <h5>Filters</h5>
+        <ul>
+          <li>
+            <input
+              className="with-gap"
+              name="moviesCategory"
+              type="radio"
+              id="nowPlayingMovies"
+              value="nowPlayingMovies"
+              checked={selectedMovieCategory === "nowPlayingMovies"}
+              onChange={this.handleMoviesCategoryChange}
+            />
+            <label htmlFor="nowPlayingMovies">Now playing</label>
+          </li>
+          <li>
+            <input
+              className="with-gap"
+              name="moviesCategory"
+              type="radio"
+              id="mostPopularMovies"
+              value="mostPopularMovies"
+              checked={selectedMovieCategory === "mostPopularMovies"}
+              onChange={this.handleMoviesCategoryChange}
+            />
+            <label htmlFor="mostPopularMovies">Most popular</label>
+          </li>
+          <li>
+            <input
+              className="with-gap"
+              name="moviesCategory"
+              type="radio"
+              id="topRatedMovies"
+              value="topRatedMovies"
+              checked={selectedMovieCategory === "topRatedMovies"}
+              onChange={this.handleMoviesCategoryChange}
+            />
+            <label htmlFor="topRatedMovies">Top rated</label>
+          </li>
+          <li>
+            <input
+              className="with-gap"
+              name="moviesCategory"
+              type="radio"
+              id="upcomingMovies"
+              value="upcomingMovies"
+              checked={selectedMovieCategory === "upcomingMovies"}
+              onChange={this.handleMoviesCategoryChange}
+            />
+            <label htmlFor="upcomingMovies">Upcoming</label>
+          </li>
+        </ul>
+
+        <p>Genres</p>
+        <ul>
+          <li>
+            <input type="checkbox" className="filled-in" id="comedy" />
+            <label htmlFor="comedy">Comedy</label>
+          </li>
+          <li>
+            <input type="checkbox" className="filled-in" id="drama" />
+            <label htmlFor="drama">Drama</label>
+          </li>
+          <li>
+            <input type="checkbox" className="filled-in" id="horror" />
+            <label htmlFor="horror">Horror</label>
+          </li>
+        </ul>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = ({ movies }) => {
+  return { movies };
+};
+
+const mapDispatchToProps = {
+  setMoviesCategory: actions.setMoviesCategory,
+  fetchNowPlayingMovies: actions.fetchNowPlayingMovies,
+  fetchMostPopularMovies: actions.fetchMostPopularMovies,
+  fetchTopRatedMovies: actions.fetchTopRatedMovies,
+  fetchUpcomingMovies: actions.fetchUpcomingMovies
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SideBar);
