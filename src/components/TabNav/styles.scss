@@ -1,0 +1,16 @@
+.tabs-container {
+  background-color: #232f3e !important;
+
+  .tabs {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+
+    .tab {
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+  }
+}

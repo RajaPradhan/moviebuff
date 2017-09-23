@@ -5,8 +5,6 @@ import Header from 'components/Header';
 import Home from 'routes/Home';
 import Footer from 'components/Footer';
 
-import './styles.scss';
-
 const App = () => (
   <main>
     <Header />

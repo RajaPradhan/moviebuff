@@ -1,0 +1,11 @@
+@media all and (min-width: 500px) {
+  .hide-on-med-and-above {
+    display: none;
+  }
+}
+
+@media all and (max-width: 500px) {
+  .hide-on-small-to-med {
+    display: none;
+  }
+}

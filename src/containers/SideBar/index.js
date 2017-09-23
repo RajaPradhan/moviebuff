@@ -1,23 +1,53 @@
-import React from 'react';
+import React from "react";
+import classNames from 'classnames';
+
+import baseStyles from 'containers/App/styles.scss';
 
 const SideBar = () => (
-  <div className="col s12 offset-m1 m2" style={{ border: '1px solid #d4d1d1', backgroundColor: '#fff' }}>
+  <div
+    className={classNames("col offset-m1 m2", baseStyles['hide-on-small-to-med'])}
+    style={{ border: "1px solid #d4d1d1", backgroundColor: "#fff" }}
+  >
     <h5>Filters</h5>
     <ul>
       <li>
-        <input className="with-gap" name="group3" type="radio" id="test1" checked />
+        <input
+          className="with-gap"
+          name="group3"
+          type="radio"
+          id="test1"
+          checked
+        />
         <label htmlFor="test1">Currently running</label>
       </li>
       <li>
-        <input className="with-gap" name="group3" type="radio" id="test2" checked />
+        <input
+          className="with-gap"
+          name="group3"
+          type="radio"
+          id="test2"
+          checked
+        />
         <label htmlFor="test2">Most popular</label>
       </li>
       <li>
-        <input className="with-gap" name="group3" type="radio" id="test3" checked />
+        <input
+          className="with-gap"
+          name="group3"
+          type="radio"
+          id="test3"
+          checked
+        />
         <label htmlFor="test3">Recent movies</label>
       </li>
       <li>
-        <input className="with-gap" name="group3" type="radio" id="test4" checked />
+        <input
+          className="with-gap"
+          name="group3"
+          type="radio"
+          id="test4"
+          checked
+        />
         <label htmlFor="test4">Epic movies</label>
       </li>
     </ul>
@@ -25,7 +55,12 @@ const SideBar = () => (
     <p>Genres</p>
     <ul>
       <li>
-        <input type="checkbox" className="filled-in" id="comedy" checked="checked" />
+        <input
+          type="checkbox"
+          className="filled-in"
+          id="comedy"
+          checked="checked"
+        />
         <label htmlFor="comedy">Comedy</label>
       </li>
       <li>
