@@ -4,7 +4,8 @@ import {
   FETCH_MOST_POPULAR_MOVIES,
   FETCH_TOP_RATED_MOVIES,
   FETCH_UPCOMING_MOVIES,
-  FETCH_MOVIES_BY_GENRES
+  FETCH_MOVIES_BY_GENRES,
+  FETCH_SEARCH_RESULTS
 } from "actions/types";
 
 const initialState = {
@@ -13,7 +14,8 @@ const initialState = {
   mostPopularMovies: [],
   topRatedMovies: [],
   upcomingMovies: [],
-  moviesByGenres: []
+  moviesByGenres: [],
+  searchResults: []
 };
 
 export default (state = initialState, action) => {
@@ -46,6 +48,11 @@ export default (state = initialState, action) => {
     case FETCH_MOVIES_BY_GENRES:
       return Object.assign({}, state, {
         moviesByGenres: action.payload
+      });
+      break;
+    case FETCH_SEARCH_RESULTS:
+      return Object.assign({}, state, {
+        searchResults: action.payload
       });
       break;
     default:

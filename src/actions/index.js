@@ -39,3 +39,11 @@ export const fetchMoviesByGenres = selectedMoviesGenres => async dispatch => {
 
   dispatch({ type: types.FETCH_MOVIES_BY_GENRES, payload: res.data });
 };
+
+export const fetchSearchResults = query => async dispatch => {
+  const res = await axios.get(
+    `${HOST}/api/v1/movies/search?query=${query}`
+  );
+
+  dispatch({ type: types.FETCH_SEARCH_RESULTS, payload: res.data });
+};

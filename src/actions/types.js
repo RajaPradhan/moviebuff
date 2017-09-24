@@ -4,3 +4,4 @@ export const FETCH_MOST_POPULAR_MOVIES = 'fetch_most_popular_movies';
 export const FETCH_TOP_RATED_MOVIES = 'fetch_top_rated_movies';
 export const FETCH_UPCOMING_MOVIES = 'fetch_upcoming_movies';
 export const FETCH_MOVIES_BY_GENRES = 'fetch_movies_by_genres';
+export const FETCH_SEARCH_RESULTS = 'fetch_search_results';
