@@ -22,16 +22,8 @@ class SearchBox extends Component {
   render() {
     return (
       <input
-        type="text"
-        placeholder="Search for Movies, People, TV Shows"
-        style={{
-          border: "1px solid #fff",
-          padding: "0 12px",
-          color: "#000",
-          backgroundColor: "#fff",
-          borderRadius: "2px",
-          height: "38px"
-        }}
+        type="search"
+        placeholder="Search for Movies"
         onKeyUp={this.handleSearch}
       />
     );

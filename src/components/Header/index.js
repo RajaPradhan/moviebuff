@@ -5,22 +5,24 @@ import classNames from "classnames";
 import SearchBox from "components/SearchBox";
 import TabNav from "components/TabNav";
 
+import logo from "images/logo.jpg";
+
 import baseStyles from "containers/App/styles.scss";
 import styles from "./styles.scss";
 
 const Header = () => (
   <div>
-    <nav
-      className={classNames(
-        styles["nav"],
-        baseStyles["hide-on-small-to-med"]
-      )}
-    >
+    <nav className={classNames(styles["nav"])}>
       <div className="nav-wrapper">
         <div className="row">
-          <div className="col s12 offset-m1 m2">
-            <Link to="home" className="brand-logo">
-              MovieBuff
+          <div
+            className={classNames(
+              "col s12 offset-m1 m2",
+              baseStyles["hide-on-small-to-med"]
+            )}
+          >
+            <Link to="/" className="brand-logo">
+              <img src={logo} alt="MovieBuff" />
             </Link>
           </div>
           <div className="col s12 m7">

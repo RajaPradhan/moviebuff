@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import classNames from "classnames";
 
 import * as actions from "actions";
@@ -45,27 +46,33 @@ class TabNav extends Component {
       >
         <div className="col s12">
           <ul className={styles.tabs}>
-            <li
-              className={styles.tab}
-              value="nowPlayingMovies"
-              onClick={this.handleTabChange}
-            >
-              Now playing
-            </li>
-            <li
-              className={styles.tab}
-              value="topRatedMovies"
-              onClick={this.handleTabChange}
-            >
-              Top rated
-            </li>
-            <li
-              className={styles.tab}
-              value="upcomingMovies"
-              onClick={this.handleTabChange}
-            >
-              Upcoming
-            </li>
+            <Link to="/home">
+              <li
+                className={styles.tab}
+                value="nowPlayingMovies"
+                onClick={this.handleTabChange}
+              >
+                Now playing
+              </li>
+            </Link>
+            <Link to="/home">
+              <li
+                className={styles.tab}
+                value="topRatedMovies"
+                onClick={this.handleTabChange}
+              >
+                Top rated
+              </li>
+            </Link>
+            <Link to="/home">
+              <li
+                className={styles.tab}
+                value="upcomingMovies"
+                onClick={this.handleTabChange}
+              >
+                Upcoming
+              </li>
+            </Link>
           </ul>
         </div>
       </div>
