@@ -7,13 +7,12 @@ import * as types from "./types";
 
 let API_HOST = "";
 if (process.env.NODE_ENV === "production") {
-  API_HOST = prodConfig.API_HOST;
+  //API_HOST = prodConfig.API_HOST;
+  API_HOST = "https://moviebuff-api.herokuapp.com"
 } else {
   //API_HOST = devConfig.API_HOST;
   API_HOST = "http://localhost:5000";
 }
-
-console.log('API_HOST', API_HOST, process.env.NODE_ENV);
 
 export const setMoviesCategory = moviesCategory => async dispatch => {
   dispatch({ type: types.SET_MOVIES_CATEGORY, payload: moviesCategory });

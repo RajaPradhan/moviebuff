@@ -5,7 +5,6 @@ const loadDetailsContainer = (/* webpackChunkName: "details" */) => import('cont
 
 class Details extends Component {
   render() {
-    console.log('id-------------', this.props.match.params.id);
     return <Chunk load={loadDetailsContainer} id={this.props.match.params.id}/>;
   }
 }
