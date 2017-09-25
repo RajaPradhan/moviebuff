@@ -4,8 +4,8 @@
   "description": "A Single-page Progressive Web App (PWA) built using React, Redux, Workbox, Webpack, Express and NodeJS.",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --env.sw=true",
-    "build": "rimraf build && cross-env NODE_ENV=production webpack --env.prod=true --env.sw=true",
+    "dev": "webpack-dev-server --env.sw=true",
+    "start": "rimraf build && cross-env NODE_ENV=production webpack --env.prod=true --env.sw=true",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src"
   },
