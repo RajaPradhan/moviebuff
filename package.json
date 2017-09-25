@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A Single-page Progressive Web App (PWA) built using React, Redux, Workbox, Webpack, Express and NodeJS.",
   "main": "index.js",
+  "engines": {
+    "node": "8.5.0"
+  },
   "scripts": {
     "dev": "webpack-dev-server --env.sw=true",
     "start": "rimraf build && webpack --env.prod=true --env.sw=true",
