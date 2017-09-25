@@ -18,7 +18,7 @@ class Details extends Component {
   }
   componentDidMount() {
     const { id, movies } = this.props;
-    const movie = _.find(movies["nowPlayingMovies"]["results"], {
+    const movie = _.find(movies[movies.moviesCategory]["results"], {
       id: Number(id)
     });
 
