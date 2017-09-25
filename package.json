@@ -8,8 +8,9 @@
   },
   "scripts": {
     "dev": "webpack-dev-server --env.sw=true",
-    "start": "npm run build && node server.js",
+    "start": "node server.js",
     "build": "rimraf build && webpack --env.prod=true --env.sw=true",
+    "postinstall": "yarn install && yarn run build",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src"
   },
