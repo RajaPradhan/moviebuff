@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 import Loading from "components/Loading";
 
@@ -22,8 +22,11 @@ const Card = props => {
               height="250px"
             />
           </Link>
-          <a className="btn-floating halfway-fab waves-effect waves-light red">
-            <i className="material-icons">add</i>
+          <a
+            className="btn-floating halfway-fab waves-effect waves-light red"
+            style={{ textAlign: "center" }}
+          >
+            {votes ? votes : 0}
           </a>
         </div>
       </div>
