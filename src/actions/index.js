@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import * as prodConfig from "config/prod";
-import * as devConfig from "config/dev";
+//import * as devConfig from "config/dev"; // Find a better way of handling this
 
 import * as types from "./types";
 
@@ -9,7 +9,8 @@ let API_HOST = "";
 if (process.env.NODE_ENV === "production") {
   API_HOST = prodConfig.API_HOST;
 } else {
-  API_HOST = devConfig.API_HOST;
+  //API_HOST = devConfig.API_HOST;
+  API_HOST = "http://localhost:5000";
 }
 
 export const setMoviesCategory = moviesCategory => async dispatch => {
