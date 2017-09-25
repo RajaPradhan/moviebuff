@@ -31,6 +31,7 @@
     "redux-form": "^7.0.4",
     "redux-thunk": "^2.2.0",
     "rimraf": "^2.6.2",
+    "webpack": "^3.6.0",
     "workbox-sw": "^2.0.1"
   },
   "devDependencies": {
@@ -71,7 +72,6 @@
     "uglify-js": "^3.1.1",
     "uglifyjs-webpack-plugin": "^0.4.6",
     "url-loader": "^0.5.9",
-    "webpack": "^3.6.0",
     "webpack-dev-server": "^2.8.2",
     "workbox-webpack-plugin": "^2.0.1"
   }
