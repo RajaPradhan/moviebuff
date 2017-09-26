@@ -153,9 +153,10 @@ module.exports = env => {
 
   if (serviceWorkerBuild) {
     plugins.push(
-      // copy WorkboxSW production build file
       new CopyWebpackPlugin([
-        { from: require.resolve('workbox-sw'), to: 'workbox-sw.prod.js' }
+        { from: require.resolve('workbox-sw'), to: 'workbox-sw.prod.js' },
+        { from: path.resolve(ROOT_DIR, 'manifest.json'), to: 'manifest.json'},
+        { from: 'images', to: 'static'}
       ]),
 
       new WorkboxWebpackPlugin({

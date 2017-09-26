@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 
 import Loading from "components/Loading";
 
-import sampleImage from "images/sample.jpg";
-
 import styles from "./styles.scss";
 
 const TMDB_POSTER_URL = "https://image.tmdb.org/t/p/w154";
