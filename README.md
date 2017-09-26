@@ -13,3 +13,14 @@
 ## Lighthouse audit score
 ![Screenshot of Lighthouse audit](/docs/lighthouse_audit.PNG)
 
+## Webpack performance budgets
+There is a webpack configuration to warn us if any of the chunk exceeds 300kB, thereby impacting user experience:
+```javascript
+performance: {
+  maxAssetSize: 300000,
+  maxEntrypointSize: 300000,
+  hints: 'warning'
+}
+```
+![Screenshot of Performance Budget](/docs/performance_budgets.PNG)
+
