@@ -3,7 +3,6 @@
 [Live Demo](https://themoviebuff.herokuapp.com/ "The Movie Buff")
 
 ## Key concepts used in the application
-___
 + PRPL pattern with minimal application core
 + Route based chunking with React Router 4 and import()
 + Automatic common chunk bundling
@@ -12,5 +11,5 @@ ___
 + Webpack 3
 
 ## Lighthouse audit score
-___
+![Screenshot of Lighthouse audit](/docs/lighthouse_audit.PNG)
 
