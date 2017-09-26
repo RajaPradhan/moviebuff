@@ -2,6 +2,8 @@
 
 [Live Demo](https://themoviebuff.herokuapp.com/ "The Movie Buff")
 
+![Demo of the app](/docs/themoviebuff.gif?raw=true "The Movie Buff")
+
 ## Key concepts used in the application
 + PRPL pattern with minimal application core
 + Route based chunking with React Router 4 and import()
