@@ -24,3 +24,28 @@ performance: {
 ```
 ![Screenshot of Performance Budget](/docs/performance_budgets.PNG)
 
+## Application architecture/ Technical stack
+The REST API powering the app is hosted as a standalone application built using Express and NodeJS. [Here](https://github.com/RajaPradhan/moviebuff-api) is the code. The frontend is a SPA built using React, Redux that is served using
+a bare minimum express server.
+
+Following are the key technologies used in the frontend and backend:
+
+### Frontend
++ [React 16.x](https://facebook.github.io/react/)
++ [Redux](http://redux.js.org/)
++ [Redux Thunk](https://github.com/gaearon/redux-thunk)
++ [React Router 4](https://reacttraining.com/react-router/)
++ [Webpack 3](https://webpack.js.org/)
++ [Workbox](https://workboxjs.org/)
++ [Prettier](https://github.com/prettier/prettier)
++ [Materialize CSS](http://materializecss.com/)
++ [PostCSS](http://postcss.org/)
++ [SASS](http://sass-lang.com/)
++ [Lodash](https://lodash.com/)
+
+## Backend
++ [NodeJS](https://nodejs.org/)
++ [Express JS](https://expressjs.com/)
+
+## Auditing
++ [Lighthouse](https://developers.google.com/web/tools/lighthouse/)
