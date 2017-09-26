@@ -16,13 +16,14 @@ const Card = props => {
           <Link to={`movies/details/${id}`}>
             <img
               src={`${TMDB_POSTER_URL}${posterPath}`}
+              alt="movie poster"
               width="154px"
               height="250px"
             />
           </Link>
           <a
-            className="btn-floating halfway-fab waves-effect waves-light red"
-            style={{ textAlign: "center" }}
+            className="btn-floating halfway-fab waves-effect waves-light"
+            style={{ textAlign: "center", backgroundColor: "#B1100C" }}
           >
             {votes ? votes : 0}
           </a>
