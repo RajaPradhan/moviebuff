@@ -43,9 +43,22 @@ Following are the key technologies used in the frontend and backend:
 + [SASS](http://sass-lang.com/)
 + [Lodash](https://lodash.com/)
 
-## Backend
+### Backend
 + [NodeJS](https://nodejs.org/)
 + [Express JS](https://expressjs.com/)
 
-## Auditing
+### Auditing
 + [Lighthouse](https://developers.google.com/web/tools/lighthouse/)
+
+## Yarn scripts
+```javascript
+yarn install - Installs dependencies
+yarn run dev - Starts the Webpack dev server
+yarn run start - Starts an Express server to serve our app
+yarn run build - Builds the app for deployment
+yarn run lint - Lints src/
+yarn run lint:fix - Lint check + Fix errors
+```
+
+## MIT Licensed
+
