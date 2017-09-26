@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const compression = require("compression");
 
 const NODE_ENV = process.env.NODE_ENV || "development";
 const PORT = process.env.PORT || 9000;
@@ -18,6 +19,9 @@ if (NODE_ENV === "production") {
     }
   });
 }
+
+// gzip compress assets before sending to client
+app.use(compression());
 
 app.use(express.static(__dirname + "/build"));
 
