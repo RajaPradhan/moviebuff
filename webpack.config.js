@@ -3,7 +3,6 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
-const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
@@ -54,6 +53,7 @@ module.exports = env => {
     new HtmlWebpackPlugin({
       template: htmlTemplate,
       inject: true,
+      preload: ['*.css'],
       production: isProd,
       minify: isProd && {
         removeComments: true,
@@ -71,13 +71,18 @@ module.exports = env => {
 
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'async',
-    }),
-
-    new PreloadWebpackPlugin()
+      preload: {
+        test: /^0|^main|^style-.*$/,
+        chunks: 'all',
+      }
+    })
   ];
 
   if(isProd) {
     plugins.push(
+      // create css bundle
+      new ExtractTextPlugin('style-[contenthash:8].css'),
+
       new UglifyJSPlugin({
         compress: {
           warnings: false,
@@ -172,7 +177,7 @@ module.exports = env => {
   const entryPoint = `${SRC_DIR}/index.js`;
 
   return {
-    devtool: isProd ? 'source-map' : 'cheap-module-source-map',
+    devtool: isProd ? 'cheap-source-map' : 'eval-cheap-module-source-map',
     context: SRC_DIR,
     entry: {
       main: entryPoint
@@ -180,8 +185,8 @@ module.exports = env => {
     output: {
       path: BUILD_DIR,
       publicPath: '/',
-      filename: '[name]-[hash:8].js',
-      chunkFilename: '[name]-[chunkhash:8].js'
+      filename: isProd ? '[name]-[hash:8].js' : '[name].js',
+      chunkFilename: isProd ? '[name]-[chunkhash:8].js' : '[name].js',
     },
     module: {
       rules: [
@@ -191,7 +196,7 @@ module.exports = env => {
           use: {
             loader: 'file-loader',
             options: {
-              name: 'static/[name]-[hash:8].[ext]',
+              name: isProd ? 'static/[name]-[hash:8].[ext]' : 'static/[name].[ext]',
             },
           },
         },
@@ -204,6 +209,7 @@ module.exports = env => {
         },
         {
           test: /\.scss$/,
+          include: SRC_DIR,
           use: cssLoader,
         },
         {
@@ -212,6 +218,7 @@ module.exports = env => {
         },
         {
           test: /\.(js|jsx)$/,
+          include: SRC_DIR,
           exclude: /node_modules/,
           use: ['babel-loader'],
         },
@@ -221,6 +228,7 @@ module.exports = env => {
     resolve: {
       extensions: ['.js', '.jsx'],
       modules: [path.resolve(__dirname, 'node_modules'), SRC_DIR],
+      symlinks: false,
     },
 
     plugins,

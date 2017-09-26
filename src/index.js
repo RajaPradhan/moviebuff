@@ -5,7 +5,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import reduxThunk from 'redux-thunk';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import 'materialize-css/dist/css/materialize.min.css';
+//import 'materialize-css/dist/css/materialize.min.css';
 
 import App from './containers/App';
 import rootReducer from './reducers';
