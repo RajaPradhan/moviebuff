@@ -1,0 +1,4 @@
+--require babel-register
+--require test/.setup.js
+--require test/helpers.js
+--recursive test/**/*-spec.js

@@ -6,7 +6,7 @@ import Card from "components/Card";
 import Loading from "components/Loading";
 import * as actions from "actions";
 
-class MainArea extends Component {
+export class MainArea extends Component {
   componentDidMount() {
     this.props.fetchNowPlayingMovies();
   }

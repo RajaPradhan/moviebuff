@@ -6,7 +6,7 @@ import * as actions from "actions";
 
 import baseStyles from "containers/App/styles.scss";
 
-class SideBar extends Component {
+export class SideBar extends Component {
   constructor(props) {
     super(props);
 
