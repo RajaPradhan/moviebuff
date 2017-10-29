@@ -28,7 +28,10 @@ describe('SideBar Container', () => {
   it('should call handleMoviesCategoryChange', () => {
     const props = {
       setMoviesCategory: function() {},
-      fetchNowPlayingMovies: function() {}
+      fetchNowPlayingMovies: function() {},
+      fetchMostPopularMovies: function() {},
+      fetchTopRatedMovies: function() {},
+      fetchUpcomingMovies: function() {}
     };
     const event = {
       target: {
@@ -37,14 +40,34 @@ describe('SideBar Container', () => {
     };
     const spySetMoviesCategory = spy(props, 'setMoviesCategory');
     const spyFetchNowPlayingMovies = spy(props, 'fetchNowPlayingMovies');
+    const spyFetchMostPopularMovies = spy(props, 'fetchMostPopularMovies');
+    const spyFetchTopRatedMovies = spy(props, 'fetchTopRatedMovies');
+    const spyFetchUpcomingMovies = spy(props, 'fetchUpcomingMovies');
+
     const wrapper = renderComponent(shallow, SideBar, props);
     const stubSetState = stub(wrapper.instance(), 'setState');
+
     wrapper.instance().handleMoviesCategoryChange(event);
     expect(spySetMoviesCategory).to.have.been.calledOnce;
     expect(spyFetchNowPlayingMovies).to.have.been.calledOnce;
 
+    event.target.value = 'mostPopularMovies';
+    wrapper.instance().handleMoviesCategoryChange(event);
+    expect(spyFetchMostPopularMovies).to.have.been.calledOnce;
+
+    event.target.value = 'topRatedMovies';
+    wrapper.instance().handleMoviesCategoryChange(event);
+    expect(spyFetchTopRatedMovies).to.have.been.calledOnce;
+
+    event.target.value = 'upcomingMovies';
+    wrapper.instance().handleMoviesCategoryChange(event);
+    expect(spyFetchUpcomingMovies).to.have.been.calledOnce;
+
     spySetMoviesCategory.restore();
     spyFetchNowPlayingMovies.restore();
+    spyFetchMostPopularMovies.restore();
+    spyFetchTopRatedMovies.restore();
+    spyFetchUpcomingMovies.restore();
     stubSetState.restore();
   });
 });

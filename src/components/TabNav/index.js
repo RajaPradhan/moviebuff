@@ -8,7 +8,7 @@ import * as actions from "actions";
 import baseStyles from "containers/App/styles.scss";
 import styles from "./styles.scss";
 
-class TabNav extends Component {
+export class TabNav extends Component {
   constructor(props) {
     super(props);
 

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import * as actions from "actions";
 
-class SearchBox extends Component {
+export class SearchBox extends Component {
   constructor(props) {
     super(props);
 
